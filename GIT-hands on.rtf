@@ -1,0 +1,947 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang16393{\fonttbl{\f0\fnil\fcharset0 Arial;}{\f1\fmodern\fcharset0 Lucida Console;}{\f2\fmodern Lucida Console;}{\f3\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;\red96\green96\blue255;\red64\green255\blue64;\red255\green0\blue0;\red191\green0\blue0;\red0\green191\blue0;\red191\green191\blue0;\red64\green255\blue255;}
+{\*\generator Riched20 10.0.16299}\viewkind4\uc1 
+\pard\b\fs24\lang9 GIT: Installation on Linux\par
+\par
+1. \par
+\b0 sudo apt-get update\par
+sudo apt-get upgrade\par
+sudo apt-get install git\par
+\par
+\b 2. RedHat/Centos\par
+\b0 sudo yum upgrade\par
+
+\pard\sa200\sl276\slmult1 sudo yum install git\par
+
+\pard\sl276\slmult1\f1\fs18\lang16393 Git and Github and Gitlab are different companies.\par
+github -> value added services like bug tracking, project management is available.\par
+
+\pard\sa200\sl276\slmult1\b\f0\fs24\lang9\par
+GIT : Installation on Windows \b0 : {\b{\field{\*\fldinst{HYPERLINK https://git-for-windows.github.io }}{\fldrslt{https://git-for-windows.github.io\ul0\cf0}}}}\cf1\b\f0\fs24\par
+
+\pard\sl276\slmult1\cf0\b0\fs20 As soon as you install GIT, establish the identity. This identity is not for Access control, just to identify who commited what changes. so that accountability can be addressed.\par
+\par
+Without establishing the identity, the commit process will not proceed.\par
+\fs24\par
+\fs20 Git -> Simple file based system.No DB.\par
+\par
+\ul\b Creating an empty Repo:\ulnone\b0\par
+\par
+\f2\fs18 $ pwd\par
+/c/GIT-PRACTICE/git-practice1\par
+\par
+\b $ git init\b0\par
+Initialized empty Git repository in C:/GIT-PRACTICE/git-practice1/.git/\par
+\par
+$ ls -R\par
+.:\par
+config  description  HEAD  \cf2 hooks\cf0 /  \cf2 info\cf0 /  \cf2 objects\cf0 /  \cf2 refs\cf0 /\par
+\par
+./hooks:\par
+\cf3 applypatch-msg.sample\cf0 *      \cf3 pre-applypatch.sample\cf0 *      \cf3 pre-rebase.sample\cf0 *\par
+\cf3 commit-msg.sample\cf0 *          \cf3 pre-commit.sample\cf0 *          \cf3 pre-receive.sample\cf0 *\par
+\cf3 fsmonitor-watchman.sample\cf0 *  \cf3 prepare-commit-msg.sample\cf0 *  \cf3 update.sample\cf0 *\par
+\cf3 post-update.sample\cf0 *         \cf3 pre-push.sample\cf0 *\par
+\par
+./info:\par
+exclude\par
+\par
+./objects:\par
+\cf2 info\cf0 /  \cf2 pack\cf0 /\par
+\par
+./objects/info:\par
+\par
+./objects/pack:\par
+\par
+./refs:\par
+\cf2 heads\cf0 /  \cf2 tags\cf0 /\par
+\par
+./refs/heads:\par
+\par
+./refs/tags:\par
+\f0\fs20  \par
+.git folder is the GIT repository.\par
+\par
+.git --> will have all the changes,staging area, committed changes,history, etc all are stored  \par
+           inside .git folder.\par
+     --> Unless you know what you are doing, do not modify the files under it. High possibility of repo  \par
+          corruption if any mistakes. No way to repair the repo.\par
+\par
+\f2\fs18 $ git --version\par
+git version 2.9.0.windows.1\par
+\f0\fs20\par
+\f2\fs18 $ \b git config --list\f1\lang16393  (Default GIT congfigurations)\b0\f2\lang9\par
+core.symlinks=false\par
+core.autocrlf=true\par
+core.fscache=true\par
+color.diff=auto\par
+color.status=auto\par
+color.branch=auto\par
+color.interactive=true\par
+help.format=html\par
+rebase.autosquash=true\par
+http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt\par
+http.sslbackend=openssl\par
+diff.astextplain.textconv=astextplain\par
+filter.lfs.clean=git-lfs clean -- %f\par
+filter.lfs.smudge=git-lfs smudge -- %f\par
+filter.lfs.process=git-lfs filter-process\par
+filter.lfs.required=true\par
+credential.helper=manager\par
+core.repositoryformatversion=0\par
+core.filemode=false\par
+core.bare=false\par
+core.logallrefupdates=true\par
+core.symlinks=false\par
+core.ignorecase=true\par
+user.name=amarnath\par
+\f0\fs20\par
+You can add these additional name/values:\par
+\par
+\f1\fs18\lang16393 $\f2\lang9 git config --add user.name amarnath\par
+\f1\lang16393 $\f2\lang9 git config --add user.email amarnath_tb@yahoo.com\par
+\f1\lang16393 $\f2\lang9 git config --add core.editor vi\par
+\par
+\f1\lang16393 $\f2\lang9 git config --list |tail -\f1\lang16393 3\par
+$\f2 core.editor=vi\par
+user.name=amarnath\par
+user.email=amarnath_tb@yahoo.com\par
+\f0\fs20\lang9\par
+\f2\fs18 $ pwd\par
+/c/GIT-PRACTICE/git-practice1\par
+\par
+$ \b git status\b0\par
+On branch master\par
+\par
+No commits yet\par
+\par
+nothing to commit (create/copy files and use "git add" to track)\par
+\f0\fs20\par
+--> You are on a master branch by default always. You have no change that you can commit.\par
+\par
+\ul\b Add few more files & git status o/p:\ulnone\par
+\b0\f2\fs18\par
+$ pwd\par
+\b /c/GIT-PRACTICE/git-practice1\f1\lang16393  \b0 (Parent dir is just outside the .git folder. .git folder is present inside the git-practice1 dir)\b\f2\lang9\par
+\b0\f0\fs20\par
+\b\f2\fs18 $ git status\f1\lang16393  \cf4\b0 (Shows couple of untracked files. but nothing to commit)\f2\lang9\par
+\cf0 On branch master\par
+\par
+No commits yet\par
+\par
+Untracked files:\par
+  (use "git add <file>..." to include in what will be committed)\par
+\par
+        \cf5 HRReasons-01.txt\par
+\cf0         \cf5 HRReasons-02.txt\par
+\cf0         \cf5 online-int-questions.txt\par
+\cf0         \cf5 test.txt\par
+\par
+\cf0 nothing added to commit but untracked files present (use "git add" to track)\par
+\f0\fs20\par
+\ul\b Add a file to GIT repo:\ulnone\par
+\b0\par
+\b\f2\fs18 $ git add test.txt\par
+\b0 warning: LF will be replaced by CRLF in test.txt.\par
+The file will have its original line endings in your working directory.\par
+\par
+$ \b git status\b0\par
+On branch master\par
+\par
+No commits yet\par
+\par
+Changes to be committed:\par
+  (use "git rm --cached <file>..." to unstage)\par
+\par
+        \cf6 new file:   test.txt\par
+\par
+\cf0 Untracked files:\par
+  (use "git add <file>..." to include in what will be committed)\par
+\par
+        \cf5 HRReasons-01.txt\par
+\cf0         \cf5 HRReasons-02.txt\par
+\cf0         \cf5 online-int-questions.txt\par
+\cf0\f0\fs20\par
+Note: test.txt is moved from untracked to being tracked state. Changes in the staging area that are ready to be committed.\par
+\par
+\b Modify a file :\b0\par
+\par
+Make some changes to test.txt and run git status.\par
+\par
+\f2\fs18 $ cat test.txt\par
+This is a first file to test the commit\par
+\par
+\b This is a change made in the second line, before commit and after staged. Verify the status after this change\b0 .\par
+\f0\fs20\par
+\f2\fs18 $ git status\par
+On branch master\par
+\par
+No commits yet\par
+\par
+\b Changes to be committed:\par
+  (use "git rm --cached <file>..." to unstage)\par
+\par
+        \cf6 new file:   test.txt\par
+\par
+\cf0 Changes not staged for commit:\par
+  (use "git add <file>..." to update what will be committed)\par
+  (use "git checkout -- <file>..." to discard changes in working directory)\par
+\par
+        \cf5 modified:   test.txt\par
+\b0\par
+\cf0 Untracked files:\par
+  (use "git add <file>..." to include in what will be committed)\par
+\par
+        \cf5 HRReasons-01.txt\par
+\cf0         \cf5 HRReasons-02.txt\par
+\cf0         \cf5 online-int-questions.txt\par
+\par
+
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\cf0\f1\lang16393 First portion shows the chnages ready to be committed.\par
+{\pntext\f3\'B7\tab}Second portion shows file is modified. but not staged for commit. It means the file is still not moved to staged state, though some update is done.\par
+{\pntext\f3\'B7\tab}Then do git add test.txt & check the status now. You would see the second portion does not appear as the changes you made are moved to staged area and ready to be committed.\par
+
+\pard\sl276\slmult1\cf5\par
+\cf0\f2 $ \b git add test.txt\b0\par
+warning: LF will be replaced by CRLF in test.txt.\par
+The file will have its original line endings in your working directory.\par
+\par
+$ git status\par
+On branch master\par
+\par
+No commits yet\par
+\par
+\b Changes to be committed:\par
+  (use "git rm --cached <file>..." to unstage)\par
+\par
+        \cf6 new file:   test.txt\par
+\b0\par
+\cf0 Untracked files:\par
+  (use "git add <file>..." to include in what will be committed)\par
+\par
+        \cf5 HRReasons-01.txt\par
+\cf0         \cf5 HRReasons-02.txt\par
+\cf0         \cf5 online-int-questions.txt\par
+\f1\par
+\cf0\ul\b\f0 Commit the changes now:\par
+\ulnone\b0\f2\par
+$ \b git commit\b0\par
+[master (root-commit) f0c2376] This is the first commit in the repo\par
+ 1 file changed, 3 insertions(+)\par
+ create mode 100644 test.txt\par
+\cf5\f1\par
+\cf0\b Commit process opens up the editor to insert the comments. You can bypass inserting comments as well. The file is moved to repo now.\par
+\b0\par
+\b git status says again nothing to commit now & few untracked files present.\par
+\b0\par
+\f2 $ git status\par
+On branch master\par
+Untracked files:\par
+  (use "git add <file>..." to include in what will be committed)\par
+\par
+        \cf5 HRReasons-01.txt\par
+\cf0         \cf5 HRReasons-02.txt\par
+\cf0         \cf5 online-int-questions.txt\par
+\par
+\cf0 nothing added to commit but untracked files present (use "git add" to track)\par
+\cf5\f1\lang9\par
+\cf0\b $ git log --stat\b0\par
+\cf7 commit f0c2376063af511fe323bb83363337c42f44a320 (\cf8 HEAD -> \cf3 master\cf7 )\cf0\lang16393  \i [Commit ID]\cf7\i0\f2\lang9\par
+\cf0 Author: amarnath <amarnath_tb@yahoo.com>\f1\lang16393  \i [Identity of the file. that is who committed the file. Not the owner of the file]\f2\lang9\par
+\i0 Date:   Mon Feb 26 12:00:32 2018 +0530\f1\lang16393  \i [Date & Time the commit made]\i0\f2\lang9\par
+\par
+    This is the first commit in the repo\f1\lang16393  \i [Comments made during this commit]\f2\lang9\par
+\i0\par
+ test.txt | 3 \cf6 +++\f1\lang16393  \cf0\i [File involved in this commit]\cf6\i0\f2\lang9\par
+\cf0  1 file changed, 3 insertions(+)\par
+\cf5\par
+\cf0\f0\fs20 ------------------------------------------------------------------------------------------------------------------------------------------\par
+\b\fs24 git reset \b0\fs20 -> Unstages the file. Moves from staging area to unstaged. File contents not affected).\par
+\par
+$ \b cat test.txt\b0\par
+This is a first file to test the commit\par
+\par
+This is a change made in the second line, before commit and after staged. Verify the status after this change.\par
+\par
+$ \b git status\par
+\b0 On branch master\par
+nothing to commit, working tree clean\par
+\par
+$ \b cat test.txt \b0 (File is updated )\par
+This is a first file to test the commit\par
+\par
+This is a change made in the second line, before commit and after staged. Verify the status after this change.\par
+\par
+Putting to staging area, then unstaging it.\par
+\par
+\b $ git add test.txt\b0\par
+\par
+$ git status\par
+On branch master\par
+\b\i Changes to be committed:\b0\i0\par
+  (use "git reset HEAD <file>..." to unstage)\par
+\par
+        modified:   test.txt\par
+\par
+$ \b\fs24 git reset test.txt\b0\fs20\par
+Unstaged changes after reset:\par
+M       test.txt\par
+\par
+$ \b git status\b0\par
+On branch master\par
+\b\i\fs24 Changes not staged for commit:\b0\i0\par
+\fs20   (use "git add <file>..." to update what will be committed)\par
+  (use "git checkout -- <file>..." to discard changes in working directory)\par
+\par
+        modified:   test.txt\par
+\par
+no changes added to commit (use "git add" and/or "git commit -a")\par
+\par
+\b Note: \b0 Working directory still has the file updates in it. Moving to unstaged state, only updates it in the git repo. Working directory remains unaffected. use git checkout to do that. See the example below.\par
+-----------------------------------------------------------------------------------------------------------------------------------------------\par
+\par
+\b\fs24 git checkout -> \b0\fs20 Rolls back the changes\b\fs24 . \b0\fs20 Copies the file to working dir from the staging area(ready for commit). When you do updates after putting to staging area, then doing git checkout reverts the changes in the working dir.\par
+\par
+\f2\fs18 $ git status\par
+On branch master\par
+Changes to be committed:\par
+  (use "git reset HEAD <file>..." to unstage)\par
+\par
+        \cf6 modified:   test.txt\par
+\cf0\f0\fs20\par
+\f2\fs18 $ cat test.txt\f1\lang16393  ( New line added. see bold letters)\f2\lang9\par
+This is a first file to test the commit\par
+\par
+This is a change made in the second line, before commit and after staged. Verify the status after this change.\par
+\par
+Putting to staging area, then unstaging it.\par
+\par
+Checking the git checkout.\par
+\par
+\b It will be gone soon.\b0\par
+\f0\fs20\par
+\f2\fs18 $ git status\par
+On branch master\par
+Changes to be committed:\par
+  (use "git reset HEAD <file>..." to unstage)\par
+\par
+        \cf6 modified:   test.txt\par
+\par
+\cf0\b\i Changes not staged for commit:\par
+\b0\i0   (use "git add <file>..." to update what will be committed)\par
+  (use "git checkout -- <file>..." to discard changes in working directory)\par
+\par
+        \cf5 modified:   test.txt\par
+\par
+\par
+\cf0\b\fs24 $ git checkout -- test.txt\b0\fs18\par
+\par
+$ git status\par
+On branch master\par
+Changes to be committed:\par
+  (use "git reset HEAD <file>..." to unstage)\par
+\par
+        \cf6 modified:   test.txt\par
+\par
+\par
+\cf0 $ cat test.txt\par
+This is a first file to test the commit\par
+\par
+This is a change made in the second line, before commit and after staged. Verify the status after this change.\par
+\par
+Putting to staging area, then unstaging it.\par
+\par
+Checking the git checkout.\par
+\f1\lang16393 ----------------------------------------------------------------------------------\par
+How to get the copy of the committed version of a file.\par
+\par
+git log --stat\par
+git checkout <commit id> <file name>\par
+\par
+Exiting file in the working dir is overwritten. eg: test.txt in the below example is overwritten at working dir.\par
+\par
+\f2 $ \b git log --stat\b0\par
+\cf7 commit 9ce1c369a285c53771b834baa8ee4b07073ae30c (\cf8 HEAD -> \cf3 master\cf7 )\par
+\cf0 Author: amarnath <amarnath_tb@yahoo.com>\par
+Date:   Mon Feb 26 15:23:17 2018 +0530\par
+\par
+    Second commit\par
+\par
+ test.txt | 6 \cf6 +++++\cf5 -\par
+\cf0  1 file changed, 5 insertions(+), 1 deletion(-)\par
+\par
+\cf7 commit f0c2376063af511fe323bb83363337c42f44a320\par
+\cf0 Author: amarnath <amarnath_tb@yahoo.com>\par
+Date:   Mon Feb 26 12:00:32 2018 +0530\par
+\par
+    This is the first commit in the repo\par
+\par
+ test.txt | 3 \cf6 +++\par
+\cf0  1 file changed, 3 insertions(+)\par
+\par
+$ \b git checkout f0c2376063af511fe323bb83363337c42f44a320 test.txt\b0\par
+$ \b cat test.txt\b0\par
+This is a first file to test the commit\par
+\par
+This is a change made in the second line, before commit and after staged. Verify the status after this change.\par
+\par
+\f1 ----------------------------------------------------------------------------------\par
+\par
+\b How to recover the deleted file from the committed versions in the repo\par
+\b0\par
+\f2 $ rm test.txt\par
+\par
+$ git status\par
+On branch master\par
+Changes not staged for commit:\par
+  (use "git add/rm <file>..." to update what will be committed)\par
+  (use "git checkout -- <file>..." to discard changes in working directory)\par
+\par
+        \cf5 deleted:    test.txt\par
+\par
+\cf0 no changes added to commit (use "git add" and/or "git commit -a")\par
+\par
+$ \b git log --stat\b0\par
+\cf7 commit e66f018f1599635dc1a066c761cf563b61b71e0d (\cf8 HEAD -> \cf3 master\cf7 )\par
+\cf0 Author: amarnath <amarnath_tb@yahoo.com>\par
+Date:   Mon Feb 26 15:59:52 2018 +0530\par
+\par
+    3rd Commit\par
+\par
+ test.txt | 2 \cf6 +\cf5 -\par
+\cf0  1 file changed, 1 insertion(+), 1 deletion(-)\par
+\par
+\cf7 commit 9ce1c369a285c53771b834baa8ee4b07073ae30c\par
+\cf0 Author: amarnath <amarnath_tb@yahoo.com>\par
+Date:   Mon Feb 26 15:23:17 2018 +0530\par
+\par
+    Second commit\par
+\par
+ test.txt | 6 \cf6 +++++\cf5 -\par
+\cf0  1 file changed, 5 insertions(+), 1 deletion(-)\par
+\par
+\cf7 commit f0c2376063af511fe323bb83363337c42f44a320\par
+\cf0 Author: amarnath <amarnath_tb@yahoo.com>\par
+Date:   Mon Feb 26 12:00:32 2018 +0530\par
+\par
+    This is the first commit in the repo\par
+\par
+ test.txt | 3 \cf6 +++\par
+\cf0  1 file changed, 3 insertions(+)\par
+\par
+$ \b git checkout e66f018f1599635dc1a066c761cf563b61b71e0d test.txt\f1     \b0 (Recovering the 3rd commit)\b\f2\par
+\b0\par
+$ git status\par
+On branch master\par
+nothing to commit, working tree clean\par
+\par
+$ \b cat test.txt\b0\par
+####This is a first file to test the commit\par
+\par
+###This is a change made in the second line, before commit and after staged. Verify the status after this change.###\par
+\par
+Putting to staging area, then unstaging it.\par
+\par
+Checking the git checkout.\par
+\f1 ==================================================================================\par
+
+\pard\sl276\slmult1\qc\b\fs22 Branch\f2\par
+
+\pard\sl276\slmult1\b0\f1\fs18\par
+Branch -> Lightweight movable pointer to one of the commits.Isolates the changes in a separate branch. Changes happening in branch1 will be completely isloated from the changes happening in master.\par
+\par
+Head -> points to whereever you are right now in the branch. Free floater pointer. \par
+\par
+\par
+\b Graphical form of the repo:\b0\par
+\f2 $ git log --oneline --decorate --graph --all\par
+* \cf7\b e66f018 (\cf8 HEAD -> \cf3 master\cf7 )\cf0  3rd Commit\b0\par
+* \cf7 9ce1c36\cf0  Second commit\par
+* \cf7 f0c2376\cf0  This is the first commit in the repo\par
+\f1\lang9\par
+\lang16393 Head points to master branch on 3rd commit in the above o/p. In the below example, head moves to 4th commit,when the 4th commit is made. (Every commit is sequential)\par
+\par
+\f2 $ git status\par
+On branch master\par
+Changes not staged for commit:\par
+  (use "git add <file>..." to update what will be committed)\par
+  (use "git checkout -- <file>..." to discard changes in working directory)\par
+\par
+        \cf5 modified:   test.txt\par
+\par
+\cf0 no changes added to commit (use "git add" and/or "git commit -a")\par
+\par
+$ git commit -m "4th Commit" test.txt\par
+[master a36bc52] 4th Commit\par
+ 1 file changed, 1 insertion(+), 1 deletion(-)\par
+\par
+$ git status\par
+On branch master\par
+nothing to commit, working tree clean\par
+\par
+$ git log --oneline --decorate --graph --all\par
+\b * \cf7 a36bc52 (\cf8 HEAD -> \cf3 master\cf7 )\cf0  4th Commit\par
+\b0 * \cf7 e66f018\cf0  3rd Commit\par
+* \cf7 9ce1c36\cf0  Second commit\par
+* \cf7 f0c2376\cf0  This is the first commit in the repo\par
+\f1\par
+\ul\b Branch creation:\ulnone\b0\par
+\b\f2\lang9\par
+$ git branch branch1\b0\par
+\par
+$ git branch\par
+  branch1\par
+* \cf6 master\par
+\cf0\f1\lang16393\par
+* --> repo ispointing currently to that branch. Master branch in this case.\par
+\par
+At this stage, master and branch1 are exactly same(Identical). \par
+\par
+\f2 $ git log --oneline --decorate --graph --all\par
+* \cf7 a36bc52 (\cf8 HEAD -> \cf3 master\cf7 , \cf3 branch1\cf7 )\cf0  4th Commit\par
+* \cf7 e66f018\cf0  3rd Commit\par
+* \cf7 9ce1c36\cf0  Second commit\par
+* \cf7 f0c2376\cf0  This is the first commit in the repo\par
+\f1\lang9\par
+\lang16393 Head points to master branch. master/branch1 in the repo are identical. It means they all have the same set of files.\par
+\par
+\par
+\b\f2 $ git checkout branch1\par
+Switched to branch 'branch1'\par
+\b0\par
+$ git branch\par
+\b * \cf6 branch1\b0\par
+\cf0   master\par
+\f1\par
+The changes that i make after switching over to branch1, will be there only in branch1, not in master branch.\par
+\par
+\f2 $ vi test-branch1.txt\par
+$ cat test-branch1.txt\par
+This is a new file for a new branch branch1.\par
+\par
+$ git status\par
+\b On branch branch1\b0\par
+Untracked files:\par
+  (use "git add <file>..." to include in what will be committed)\par
+\par
+        \cf5 test-branch1.txt\par
+\par
+\cf0 nothing added to commit but untracked files present (use "git add" to track)\par
+\par
+$ git add test-branch1.txt\par
+warning: LF will be replaced by CRLF in test-branch1.txt.\par
+The file will have its original line endings in your working directory.\par
+\par
+$ git status\par
+On branch branch1\par
+Changes to be committed:\par
+  (use "git reset HEAD <file>..." to unstage)\par
+\par
+        \cf6 new file:   test-branch1.txt\par
+\par
+\par
+\cf0 $ git commit -m "First commit for branch1"\par
+[branch1 ea54b09] First commit for branch1\par
+ 1 file changed, 2 insertions(+)\par
+ create mode 100644 test-branch1.txt\par
+\f1\par
+\f2 $ git log --oneline --decorate --graph --all\par
+\b * \cf7 ea54b09 (\cf8 HEAD -> \cf3 branch1\cf7 )\cf0  First commit for branch1\par
+* \cf7 a36bc52 (\cf3 master\cf7 )\cf0  4th Commit\par
+\b0 * \cf7 e66f018\cf0  3rd Commit\par
+* \cf7 9ce1c36\cf0  Second commit\par
+* \cf7 f0c2376\cf0  This is the first commit in the repo\par
+\f1\par
+Head pointer moved forward to branch1, master branch is behind it.\par
+Recent commit has some changes which are not there in the master branch. branch1 has that changes.\par
+\par
+It also means that i am currently in branch1 on the repo. git branch shows which branch i am currently working on.\par
+\par
+\f2 $ git branch\par
+* \cf6 branch1\par
+\cf0   master\par
+\f1\par
+Switching over to master branch now, then the new file test-branch1.txt does not appear. Because this is the new file added in branch1 which master branch is not aware.\par
+\par
+\f2 $ git checkout master\par
+\b Switched to branch 'master'\par
+\b0\par
+$ ls -la\par
+total 9\par
+drwxr-xr-x 1 Amarnath TB 197121   0 Feb 26 17:35 \cf2 .\cf0 /\par
+drwxr-xr-x 1 Amarnath TB 197121   0 Feb 26 15:54 \cf2 ..\cf0 /\par
+drwxr-xr-x 1 Amarnath TB 197121   0 Feb 26 17:35 \cf2 .git\cf0 /\par
+-rw-r--r-- 1 Amarnath TB 197121 248 Feb 26 17:03 test.txt\par
+\f1\par
+head now points to master.\par
+\par
+\f2 $ git log --oneline --decorate --graph --all\par
+* \cf7 ea54b09 (\cf3 branch1\cf7 )\cf0  First commit for branch1\par
+* \cf7 a36bc52 (\cf8 HEAD -> \cf3 master\cf7 )\cf0  4th Commit\par
+* \cf7 e66f018\cf0  3rd Commit\par
+* \cf7 9ce1c36\cf0  Second commit\par
+* \cf7 f0c2376\cf0  This is the first commit in the repo\par
+\f1\par
+\b\fs22 Merging branches:\par
+\b0\fs18\par
+Merging from branch1 to master branch.\par
+\par
+My head should point to master branch(target branch).\par
+\par
+Confirms head pointing to master branch.\par
+\par
+\f2 $ git branch\par
+  branch1\par
+* \cf6 master\par
+\cf0\f1\par
+\f2 $ \b git merge branch1\b0\par
+Updating a36bc52..ea54b09\par
+Fast-forward\par
+ test-branch1.txt | 2 \cf6 ++\par
+\cf0  1 file changed, 2 insertions(+)\par
+ create mode 100644 test-branch1.txt\par
+\f1\par
+\f2 $ git log --oneline --decorate --graph --all\par
+* \cf7 ea54b09 (\cf8 HEAD -> \cf3 master\cf7 , \cf3 branch1\cf7 )\cf0  First commit for branch1\par
+* \cf7 a36bc52\cf0  4th Commit\par
+* \cf7 e66f018\cf0  3rd Commit\par
+* \cf7 9ce1c36\cf0  Second commit\par
+* \cf7 f0c2376\cf0  This is the first commit in the repo\par
+\f1\par
+It shows that master,branch1 are same. head points to master.\par
+\par
+Create the \b new branch from master branch \b0 and switch over to new branch.\par
+\par
+\b\f2 $ git checkout -b branch2\par
+\b0 Switched to a new branch 'branch2'\par
+\par
+$ git branch\par
+  branch1\par
+* \cf6 branch2\par
+\cf0   master\par
+\par
+$ git log --oneline --decorate --graph --all\par
+* \cf7 ea54b09 (\cf8\b\fs20 HEAD -> \cf3 branch2\cf7\b0\fs18 , \cf3 master\cf7 , \cf3 branch1\cf7 )\cf0  First commit for branch1\par
+* \cf7 a36bc52\cf0  4th Commit\par
+* \cf7 e66f018\cf0  3rd Commit\par
+* \cf7 9ce1c36\cf0  Second commit\par
+* \cf7 f0c2376\cf0  This is the first commit in the repo\par
+\f1\par
+Resolving conflicts while merging.\par
+\par
+\f2 $ vi test-branch1.txt\par
+$ cat test-branch1.txt\par
+This is a new file for a new branch branch1.\par
+\par
+\b New line added in branch2.\b0\par
+\f1\par
+\f2 $ git status\par
+On branch branch2\par
+Changes to be committed:\par
+  (use "git reset HEAD <file>..." to unstage)\par
+\par
+        \cf6 modified:   test-branch1.txt\par
+\cf0\f1\par
+\f2 $ git commit -m "In branch2, edited the line and committing first"\par
+[branch2 84e0768] In branch2, edited the line and committing first\par
+ 1 file changed, 1 insertion(+)\par
+\f1\par
+master,branch1 is behind branch2. head points to branch2.\par
+\par
+\f2 $ git log --oneline --decorate --graph --all\par
+* \cf7 84e0768 (\cf8 HEAD -> \cf3 branch2\cf7 )\cf0  In branch2, edited the line and committing first\par
+* \cf7 ea54b09 (\cf3 master\cf7 , \cf3 branch1\cf7 )\cf0  First commit for branch1\par
+* \cf7 a36bc52\cf0  4th Commit\par
+* \cf7 e66f018\cf0  3rd Commit\par
+* \cf7 9ce1c36\cf0  Second commit\par
+* \cf7 f0c2376\cf0  This is the first commit in the repo\par
+\f1\par
+\b Merging to master branch from branch2.\par
+\b0\par
+\f2 $ git checkout master\par
+Switched to branch 'master'\par
+\par
+$ git log --oneline --decorate --graph --all\par
+* \cf7 84e0768 (\cf3 branch2\cf7 )\cf0  In branch2, edited the line and committing first\par
+* \cf7 ea54b09 (\cf8 HEAD -> \cf3 master\cf7 , \cf3 branch1\cf7 )\cf0  First commit for branch1\par
+\f1\par
+\f2 $ git branch\par
+  branch1\par
+  branch2\par
+* \cf6 master\par
+\cf0\f1\par
+\f2 $ vi test-branch1.txt\par
+$ cat test-branch1.txt\par
+This is a new file for a new branch branch1.\par
+\par
+New line added by master branch, to produce the conflict.\par
+\f1\par
+\f2 $ git add .\par
+$ git status\par
+On branch master\par
+Changes to be committed:\par
+  (use "git reset HEAD <file>..." to unstage)\par
+\par
+        \cf6 modified:   test-branch1.txt\par
+\cf0\par
+$ git commit -m "Master branch changes, commit to produce the conflict"\par
+[master 379aee7] Master branch changes, commit to produce the conflict\par
+ 1 file changed, 2 insertions(+)\par
+\f1\par
+\f2 $ \b git merge branch2\b0\par
+Auto-merging test-branch1.txt\par
+\b CONFLICT (content): Merge conflict in test-branch1.txt\par
+Automatic merge failed; fix conflicts and then commit the result.\par
+\f1\par
+\b0 Reason for conflict -> master branch committed some changes and branch2 committed some changes to the same file.\par
+\par
+git shows the file that has conflict. it doesn't know which file to take.\par
+\par
+\f2 $ \b cat test-branch1.txt\b0\par
+This is a new file for a new branch branch1.\par
+\par
+<<<<<<< HEAD\f1  \i [This is the branch where my head points to. In this case master branch the head points to. Conflicting lines present in the master branch shows up below]\par
+\f2\par
+\i0 New line added by master branch, to produce the conflict.\par
+\par
+=======\par
+New line added in branch2.\par
+>>>>>>> branch2\f1  \i [Conflicting line in branch2 shows above]\i0\f2\par
+\f1\par
+since i need both the conflicting lines, i am editing the file & keeping both the conflicting lines, removing other marked entries.\par
+\par
+\f2 $ vi test-branch1.txt\par
+$ cat test-branch1.txt\par
+This is a new file for a new branch branch1.\par
+New line added by master branch, to produce the conflict.\par
+New line added in branch2.\par
+\f1\par
+\f2 $ \b git status\b0\par
+On branch master\par
+You have unmerged paths.\par
+  (fix conflicts and run "git commit")\par
+  (use "git merge --abort" to abort the merge)\par
+\par
+Unmerged paths:\par
+  (use "git add <file>..." to mark resolution)\par
+\par
+        \cf5 both modified:   test-branch1.txt\par
+\par
+\cf0 no changes added to commit (use "git add" and/or "git commit -a")\par
+\f1\par
+\b\f2 $ git add .\b0\par
+$ git status\par
+On branch master\par
+All conflicts fixed but you are still merging.\par
+  (use "git commit" to conclude merge)\par
+\par
+Changes to be committed:\par
+\par
+        \cf6 modified:   test-branch1.txt\par
+\cf0\f1\par
+\f2 $ git commit -m "Conflicts resolved and merging branch2 to master"\par
+[master 0f7cfa2] Conflicts resolved and merging branch2 to master\par
+\f1\par
+\f2 $ \b git log --oneline --decorate --graph --all\b0\par
+*   \cf7 0f7cfa2 (\cf8 HEAD -> \cf3 master\cf7 )\cf0  Conflicts resolved and merging branch2 to master\par
+\cf5 |\cf6\\\par
+\cf5 |\cf0  * \cf7 84e0768 (\cf3 branch2\cf7 )\cf0  In branch2, edited the line and committing first\par
+* \cf6 |\cf0  \cf7 379aee7\cf0  Master branch changes, commit to produce the conflict\par
+\cf6 |/\par
+\cf0 * \cf7 ea54b09 (\cf3 branch1\cf7 )\cf0  First commit for branch1\par
+* \cf7 a36bc52\cf0  4th Commit\par
+* \cf7 e66f018\cf0  3rd Commit\par
+* \cf7 9ce1c36\cf0  Second commit\par
+* \cf7 f0c2376\cf0  This is the first commit in the repo\par
+\par
+$ git log --stat\par
+\cf7 commit 0f7cfa292655417958d338a4b6511ed7b98e15e6 (\cf8 HEAD -> \cf3 master\cf7 )\par
+\cf0 Merge: 379aee7 84e0768\par
+Author: amarnath <amarnath_tb@yahoo.com>\par
+Date:   Mon Feb 26 18:33:51 2018 +0530\par
+\par
+    Conflicts resolved and merging branch2 to master\par
+\par
+\cf7 commit 379aee770242b6efcbc820dc9126bfebf0672981\par
+\cf0 Author: amarnath <amarnath_tb@yahoo.com>\par
+Date:   Mon Feb 26 18:19:24 2018 +0530\par
+\par
+    Master branch changes, commit to produce the conflict\par
+\par
+ test-branch1.txt | 2 \cf6 ++\par
+\cf0  1 file changed, 2 insertions(+)\par
+\par
+\cf7 commit 84e0768b50f142b4350f50f6d93ea8b48ff7f9fb (\cf3 branch2\cf7 )\par
+\cf0 Author: amarnath <amarnath_tb@yahoo.com>\par
+Date:   Mon Feb 26 18:07:15 2018 +0530\par
+\par
+    In branch2, edited the line and committing first\par
+\par
+ test-branch1.txt | 1 \cf6 +\par
+\cf0  1 file changed, 1 insertion(+)\par
+\f1\par
+----------------------------------------------------------------------------------\par
+\par
+3 ways to undo from merge:\par
+reset --hard\par
+revert\par
+checkout\par
+\f2\lang9\par
+\f1\lang16393 git checkout -b branch5 <commit id> --> will create a new branch. New branch will have the file corresponding to commit id.\par
+----------------------------------------------------------------------------------\par
+\par
+\ul\b\fs22 Online Repo:\par
+\ulnone\b0\fs18\par
+{{\field{\*\fldinst{HYPERLINK https://github.com }}{\fldrslt{https://github.com\ul0\cf0}}}}\f1\fs18  -> amarnathtb/Hv15nihePM$ & tbamarnath@yahoo.com\par
+\par
+Login to github and create a test repo.\par
+\par
+Created a test repo "gittest01" & url: {{\field{\*\fldinst{HYPERLINK https://github.com/amarnathtb/gittest01.git }}{\fldrslt{https://github.com/amarnathtb/gittest01.git\ul0\cf0}}}}\f1\fs18\par
+\par
+\par
+Add a remote url to local repo. Create an alias name(onlinerepo) for this url.\par
+\par
+\f2 $ git remote add onlinerepo {{\field{\*\fldinst{HYPERLINK https://github.com/amarnathtb/gittest01.git }}{\fldrslt{https://github.com/amarnathtb/gittest01.git\ul0\cf0}}}}\f2\fs18\par
+\par
+$ git remote -v\par
+onlinerepo      {{\field{\*\fldinst{HYPERLINK https://github.com/amarnathtb/gittest01.git }}{\fldrslt{https://github.com/amarnathtb/gittest01.git\ul0\cf0}}}}\f2\fs18  (fetch)\par
+onlinerepo      {{\field{\*\fldinst{HYPERLINK https://github.com/amarnathtb/gittest01.git }}{\fldrslt{https://github.com/amarnathtb/gittest01.git\ul0\cf0}}}}\f2\fs18  (push)\par
+\f1\par
+\f2 $ git branch\par
+  branch1\par
+  branch2\par
+  branch5\par
+* \cf6 master\par
+\cf0\f1\par
+$\f2  \b git push onlinerepo master\b0\f1  \par
+\par
+\i [Pushes the master branch from local repo to remote repo "onlinerepo".\par
+"master" indicates that master branch will be pushed to remote repo.]\i0\par
+\par
+\f2 $ git push onlinerepo master\par
+Counting objects: 24, done.\par
+Delta compression using up to 4 threads.\par
+Compressing objects: 100% (19/19), done.\par
+Writing objects: 100% (24/24), 2.27 KiB | 77.00 KiB/s, done.\par
+Total 24 (delta 4), reused 0 (delta 0)\par
+remote: Resolving deltas: 100% (4/4), done.\par
+To {{\field{\*\fldinst{HYPERLINK https://github.com/amarnathtb/gittest01.git }}{\fldrslt{https://github.com/amarnathtb/gittest01.git\ul0\cf0}}}}\f2\fs18\par
+ * [new branch]      master -> master\par
+\f1\par
+Refresh the github page and see all the files are present. you can see the following.\par
+branch ->  master\par
+All the commits that were made in local repo\par
+\par
+\b Note: \b0\par
+Online repo is acting like a central repo where multiple users can push their local repo to this online repo. So the possibility of merge conflicts will arise.\par
+Pushing is similar to merging 2 branches but branches on 2 different repos.\par
+\par
+\par
+\ul\b Git clone:\ulnone\b0\par
+\b\par
+\b0 Cloning gets you the copy of the entire online repo into local dir. It means that you get all the histories, all the commits, all the branches,etc,. So you can work like your local repo where you can all git operations.\par
+\par
+Once you clone, no online connection is necessary. Only time you need to connect online is when you have to merge the changes to this online repo.\par
+\b\par
+\b0\f2 $ pwd\par
+/c/GIT-PRACTICE/git-clone\par
+\par
+$ git clone {{\field{\*\fldinst{HYPERLINK https://github.com/amarnathtb/gittest01.git }}{\fldrslt{https://github.com/amarnathtb/gittest01.git\ul0\cf0}}}}\f2\fs18\par
+Cloning into 'gittest01'...\par
+remote: Counting objects: 24, done.\par
+remote: Compressing objects: 100% (15/15), done.\par
+remote: Total 24 (delta 4), reused 24 (delta 4), pack-reused 0\par
+Unpacking objects: 100% (24/24), done.\par
+\par
+$ ls -la\par
+cdtotal 4\par
+drwxr-xr-x 1 Amarnath TB 197121 0 Feb 26 21:13 \cf2 .\cf0 /\par
+drwxr-xr-x 1 Amarnath TB 197121 0 Feb 26 21:12 \cf2 ..\cf0 /\par
+drwxr-xr-x 1 Amarnath TB 197121 0 Feb 26 21:13 \cf2 gittest01\cf0 /\par
+\par
+$ cd gittest01/\par
+\par
+$ ls -a\par
+\cf2 .\cf0 /  \cf2 ..\cf0 /  \cf2 .git\cf0 /  test.txt  test-branch1.txt\par
+\par
+$ git status\par
+On branch master\par
+Your branch is up to date with 'origin/master'.\par
+\par
+nothing to commit, working tree clean\par
+\f1\lang9\par
+\b\lang16393 Pull from online repo:\b0\par
+\par
+\f2 $ pwd\par
+/c/GIT-PRACTICE/git-practice1\f1  -> Existing local repo.\f2\par
+\par
+$ git remote\par
+onlinerepo\par
+\par
+$ git remote add onlinerepo2 {{\field{\*\fldinst{HYPERLINK https://github.com/paulboone/ticgit }}{\fldrslt{https://github.com/paulboone/ticgit\ul0\cf0}}}}\f2\fs18\par
+\par
+$ git remote\par
+onlinerepo\par
+onlinerepo2\par
+\par
+$ git remote -v\par
+onlinerepo      {{\field{\*\fldinst{HYPERLINK https://github.com/amarnathtb/gittest01.git }}{\fldrslt{https://github.com/amarnathtb/gittest01.git\ul0\cf0}}}}\f2\fs18  (fetch)\par
+onlinerepo      {{\field{\*\fldinst{HYPERLINK https://github.com/amarnathtb/gittest01.git }}{\fldrslt{https://github.com/amarnathtb/gittest01.git\ul0\cf0}}}}\f2\fs18  (push)\par
+onlinerepo2     {{\field{\*\fldinst{HYPERLINK https://github.com/paulboone/ticgit }}{\fldrslt{https://github.com/paulboone/ticgit\ul0\cf0}}}}\f2\fs18  (fetch)\par
+onlinerepo2     {{\field{\*\fldinst{HYPERLINK https://github.com/paulboone/ticgit }}{\fldrslt{https://github.com/paulboone/ticgit\ul0\cf0}}}}\f2\fs18  (push)\par
+\f1\par
+\f2\lang9\par
+\f1\lang16393 Going to merge from the new online repo to existing local repo.\par
+\par
+\f2 $\b  git pull onlinerepo2 master\b0\par
+warning: no common commits\par
+remote: Counting objects: 580, done.\par
+remote: Total 580 (delta 0), reused 0 (delta 0), pack-reused 580\par
+Receiving objects: 100% (580/580), 80.50 KiB | 87.00 KiB/s, done.\par
+Resolving deltas: 100% (239/239), done.\par
+From {{\field{\*\fldinst{HYPERLINK https://github.com/paulboone/ticgit }}{\fldrslt{https://github.com/paulboone/ticgit\ul0\cf0}}}}\f2\fs18\par
+ * branch            master     -> FETCH_HEAD\par
+ * [new branch]      master     -> onlinerepo2/master\par
+\b fatal: refusing to merge unrelated histories\f1  \b0 --> Due to local repo and online repo2 has different set of histories.\par
+\b\par
+\b0 ----------------------------------------------------------------------------------\par
+\b\par
+fetch -> it only fetch the files, it will not merge the changes, unlike pull which pulls the files and merges the repo.\par
+\par
+.gitignore\b0  -> available on top of .git folder. Contains list of files that GIT do not consider it as part of repo. It will ignore any changes made in these files. \par
+You have to create .gitignore file, if you need git to ignore files.\par
+\par
+sample entries:\par
+bin/*.log\tab *.gem\par
+pkg\tab\tab *.swp\par
+coverage\tab rdoc\par
+ticgit*gem\tab\par
+\par
+\b Hooks:\b0\par
+\par
+\f2 $ pwd\par
+/c/GIT-PRACTICE/git-practice1/.git/hooks\par
+\par
+$ ls -a\par
+\cf2 .\cf0 /                          \cf3 post-update.sample\cf0 *         \cf3 pre-rebase.sample\cf0 *\par
+\cf2 ..\cf0 /                         \cf3 pre-applypatch.sample\cf0 *      \cf3 pre-receive.sample\cf0 *\par
+\cf3 applypatch-msg.sample\cf0 *      \cf3 pre-commit.sample\cf0 *          \cf3 update.sample\cf0 *\par
+\cf3 commit-msg.sample\cf0 *          \cf3 prepare-commit-msg.sample\cf0 *\par
+\cf3 fsmonitor-watchman.sample\cf0 *  \cf3 pre-push.sample\cf0 *\par
+\f1\par
+\b Remove the .sample so git will execute the hook scripts.\f2\par
+\b0\f1\par
+hooks are the scripts that git will execute before or after the event.\par
+\f2\lang9\par
+\f1\lang16393 eg: sending email notification after the commit.\par
+\par
+\b git rm <file> \b0 -> Removes the file from the working dir and mark it as deleted. Then once committed, it will also remove from the repo\par
+\par
+\b git rm --cached <file> \b0 -> Removes from repo. It will not remove from working dir.\par
+\b git reset \b0 -> will unstage a file and it will not untrack a file. whereas rm --cached, removes from repo so untracks the file.\par
+\par
+\b git commit --amend <commit id> <messages> \b0 -> Changes the commit message of the previous commit.\par
+\par
+git hub has the limitation of file size 100mb to 200mb.\f2\lang9\par
+}
+ 
